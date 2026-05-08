@@ -1,0 +1,89 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap');
+  .lb-wrap { min-height: 520px; background: var(--color-background-secondary); border-radius: var(--border-radius-lg); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .lb-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 20px; width: 100%; max-width: 400px; padding: 2.5rem 2rem; font-family: 'DM Sans', sans-serif; }
+  .lb-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 2rem; }
+  .lb-logo-icon { width: 38px; height: 38px; background: #042C53; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+  .lb-logo-icon i { color: #E6F1FB; font-size: 20px; }
+  .lb-logo-text { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--color-text-primary); line-height: 1.2; }
+  .lb-logo-sub { font-size: 11px; color: var(--color-text-secondary); font-family: 'DM Sans', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; margin-top: 1px; }
+  .lb-heading { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--color-text-primary); margin: 0 0 4px; }
+  .lb-sub { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 1.8rem; }
+  .lb-label { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); display: block; margin-bottom: 6px; letter-spacing: 0.03em; text-transform: uppercase; }
+  .lb-field { margin-bottom: 1.2rem; }
+  .lb-input { width: 100%; box-sizing: border-box; height: 42px; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); background: var(--color-background-secondary); color: var(--color-text-primary); font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 0 12px; outline: none; transition: border-color 0.15s; }
+  .lb-input:focus { border-color: #185FA5; box-shadow: 0 0 0 3px rgba(24,95,165,0.12); }
+  .lb-input-wrap { position: relative; }
+  .lb-input-wrap i { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--color-text-tertiary); font-size: 16px; cursor: pointer; }
+  .lb-btn { width: 100%; height: 44px; background: #042C53; color: #E6F1FB; border: none; border-radius: var(--border-radius-md); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; letter-spacing: 0.02em; transition: background 0.15s; margin-top: 0.5rem; }
+  .lb-btn:hover { background: #185FA5; }
+  .lb-divider { display: flex; align-items: center; gap: 12px; margin: 1.5rem 0; }
+  .lb-divider span { font-size: 12px; color: var(--color-text-tertiary); white-space: nowrap; }
+  .lb-divider-line { flex: 1; height: 0.5px; background: var(--color-border-tertiary); }
+  .lb-id-btn { width: 100%; height: 44px; background: transparent; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--color-text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.15s; }
+  .lb-id-btn:hover { background: var(--color-background-secondary); }
+  .lb-id-btn i { color: #185FA5; font-size: 18px; }
+  .lb-footer { text-align: center; margin-top: 1.5rem; font-size: 12px; color: var(--color-text-tertiary); }
+  .lb-footer a { color: #185FA5; text-decoration: none; }
+  .lb-badge { display: inline-flex; align-items: center; gap: 4px; background: #E6F1FB; color: #0C447C; font-size: 11px; padding: 3px 8px; border-radius: 99px; margin-bottom: 1.2rem; font-weight: 500; }
+</style>
+
+<div class="lb-wrap">
+  <div class="lb-card">
+    <div class="lb-logo">
+      <div class="lb-logo-icon"><i class="ti ti-building-library" aria-hidden="true"></i></div>
+      <div>
+        <div class="lb-logo-text">LaptopLib</div>
+        <div class="lb-logo-sub">Borrowing Portal</div>
+      </div>
+    </div>
+
+    <div class="lb-badge"><i class="ti ti-device-laptop" style="font-size:13px" aria-hidden="true"></i> Laptop Borrowing System</div>
+
+    <h1 class="lb-heading">Welcome back</h1>
+    <p class="lb-sub">Sign in with your student or staff ID to continue.</p>
+
+    <div class="lb-field">
+      <label class="lb-label">Student / Staff ID</label>
+      <div class="lb-input-wrap">
+        <input class="lb-input" type="text" placeholder="e.g. 2024-00123" style="padding-right: 36px;" />
+        <i class="ti ti-id-badge-2" aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <div class="lb-field">
+      <label class="lb-label">Password</label>
+      <div class="lb-input-wrap">
+        <input class="lb-input" type="password" placeholder="Enter your password" id="pw-input" style="padding-right: 36px;" />
+        <i class="ti ti-eye" aria-hidden="true" id="pw-toggle" style="cursor:pointer;" onclick="
+          var inp = document.getElementById('pw-input');
+          var ico = document.getElementById('pw-toggle');
+          if(inp.type==='password'){inp.type='text';ico.className='ti ti-eye-off';}
+          else{inp.type='password';ico.className='ti ti-eye';}
+        "></i>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:flex-end; margin-top:-0.6rem; margin-bottom:1.2rem;">
+      <a href="#" style="font-size:12px; color:#185FA5; text-decoration:none;">Forgot password?</a>
+    </div>
+
+    <button class="lb-btn">Sign in</button>
+
+    <div class="lb-divider">
+      <div class="lb-divider-line"></div>
+      <span>or sign in with</span>
+      <div class="lb-divider-line"></div>
+    </div>
+
+    <button class="lb-id-btn">
+      <i class="ti ti-scan" aria-hidden="true"></i>
+      Scan Library Card / ID Barcode
+    </button>
+
+    <div class="lb-footer">
+      Don't have an account? <a href="#">Register here</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,195 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap');
+  .dash { font-family: 'DM Sans', sans-serif; background: var(--color-background-secondary); border-radius: var(--border-radius-lg); overflow: hidden; }
+  .dash-top { background: #042C53; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .dash-logo { display: flex; align-items: center; gap: 10px; }
+  .dash-logo-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .dash-logo-icon i { color: #B5D4F4; font-size: 18px; }
+  .dash-title { font-family: 'DM Serif Display', serif; color: #E6F1FB; font-size: 17px; }
+  .dash-title span { font-family: 'DM Sans', sans-serif; font-size: 12px; color: #7FB3E0; margin-left: 8px; font-weight: 400; }
+  .dash-user { display: flex; align-items: center; gap: 10px; }
+  .dash-avatar { width: 32px; height: 32px; background: #185FA5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #B5D4F4; font-size: 12px; font-weight: 500; }
+  .dash-username { font-size: 13px; color: #B5D4F4; }
+
+  .dash-nav { background: var(--color-background-primary); border-bottom: 0.5px solid var(--color-border-tertiary); padding: 0 1.5rem; display: flex; gap: 0; }
+  .dash-nav a { font-size: 13px; padding: 0.75rem 1rem; color: var(--color-text-secondary); text-decoration: none; border-bottom: 2px solid transparent; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: color 0.15s; }
+  .dash-nav a.active { color: #185FA5; border-bottom-color: #185FA5; font-weight: 500; }
+  .dash-nav a i { font-size: 16px; }
+
+  .dash-body { padding: 1.5rem; }
+
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 1.5rem; }
+  .metric { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 1rem; }
+  .metric-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .metric-label i { font-size: 15px; }
+  .metric-val { font-size: 26px; font-weight: 500; color: var(--color-text-primary); line-height: 1; }
+  .metric-note { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; }
+  .badge { display: inline-flex; align-items: center; font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 500; }
+  .badge-blue { background: #E6F1FB; color: #0C447C; }
+  .badge-amber { background: #FAEEDA; color: #633806; }
+  .badge-red { background: #FCEBEB; color: #791F1F; }
+  .badge-green { background: #EAF3DE; color: #27500A; }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .panel { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+  .panel-head { padding: 0.9rem 1.2rem; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; justify-content: space-between; }
+  .panel-head-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); display: flex; align-items: center; gap: 8px; }
+  .panel-head-title i { font-size: 16px; color: var(--color-text-secondary); }
+  .panel-action { font-size: 12px; color: #185FA5; cursor: pointer; text-decoration: none; }
+
+  table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.tbl thead th { padding: 0.5rem 1.2rem; text-align: left; font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); letter-spacing: 0.04em; text-transform: uppercase; border-bottom: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); }
+  table.tbl tbody td { padding: 0.7rem 1.2rem; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); vertical-align: middle; }
+  table.tbl tbody tr:last-child td { border-bottom: none; }
+  table.tbl tbody tr:hover td { background: var(--color-background-secondary); }
+
+  .laptop-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+  .dot-avail { background: #639922; }
+  .dot-out { background: #E24B4A; }
+  .dot-maint { background: #EF9F27; }
+
+  .alert-item { display: flex; align-items: flex-start; gap: 12px; padding: 0.8rem 1.2rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .alert-item:last-child { border-bottom: none; }
+  .alert-icon { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .alert-icon-red { background: #FCEBEB; color: #A32D2D; }
+  .alert-icon-amber { background: #FAEEDA; color: #854F0B; }
+  .alert-icon i { font-size: 15px; }
+  .alert-text { font-size: 13px; color: var(--color-text-primary); line-height: 1.4; }
+  .alert-time { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+
+  .action-btn { background: #042C53; color: #E6F1FB; border: none; border-radius: var(--border-radius-md); padding: 6px 14px; font-size: 12px; font-family: 'DM Sans', sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
+  .action-btn:hover { background: #185FA5; }
+</style>
+
+<div class="dash">
+  <div class="dash-top">
+    <div class="dash-logo">
+      <div class="dash-logo-icon"><i class="ti ti-building-library" aria-hidden="true"></i></div>
+      <div>
+        <div class="dash-title">LaptopLib <span>Librarian Dashboard</span></div>
+      </div>
+    </div>
+    <div class="dash-user">
+      <div class="dash-avatar">MR</div>
+      <span class="dash-username">Ms. Reyes &nbsp;·&nbsp; <span style="color:#7FB3E0; font-size:11px;">Admin</span></span>
+      <i class="ti ti-logout" style="color:#7FB3E0; font-size:18px; cursor:pointer; margin-left:4px;" aria-hidden="true"></i>
+    </div>
+  </div>
+
+  <div class="dash-nav">
+    <a class="active"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Overview</a>
+    <a><i class="ti ti-device-laptop" aria-hidden="true"></i> Laptops</a>
+    <a><i class="ti ti-users" aria-hidden="true"></i> Borrowers</a>
+    <a><i class="ti ti-calendar" aria-hidden="true"></i> Reservations</a>
+    <a><i class="ti ti-file-report" aria-hidden="true"></i> Reports</a>
+  </div>
+
+  <div class="dash-body">
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label"><i class="ti ti-device-laptop" aria-hidden="true"></i> Total Laptops</div>
+        <div class="metric-val">48</div>
+        <div class="metric-note">Across 3 labs</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label"><i class="ti ti-device-laptop" style="color:#639922" aria-hidden="true"></i> Available Now</div>
+        <div class="metric-val" style="color:#3B6D11">31</div>
+        <div class="metric-note">Ready to borrow</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label"><i class="ti ti-circle-arrow-up-right" style="color:#E24B4A" aria-hidden="true"></i> Currently Out</div>
+        <div class="metric-val" style="color:#A32D2D">14</div>
+        <div class="metric-note">3 overdue</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label"><i class="ti ti-tool" style="color:#EF9F27" aria-hidden="true"></i> Under Maintenance</div>
+        <div class="metric-val" style="color:#854F0B">3</div>
+        <div class="metric-note">Est. return: Mon</div>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-head-title"><i class="ti ti-clock-hour-4" aria-hidden="true"></i> Active Borrows</div>
+          <a class="panel-action">View all</a>
+        </div>
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Borrower</th>
+              <th>Laptop</th>
+              <th>Due</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Santos, J.</td>
+              <td>LT-007</td>
+              <td>Today 5PM</td>
+              <td><span class="badge badge-amber">Due soon</span></td>
+            </tr>
+            <tr>
+              <td>Cruz, M.</td>
+              <td>LT-012</td>
+              <td>Yesterday</td>
+              <td><span class="badge badge-red">Overdue</span></td>
+            </tr>
+            <tr>
+              <td>Reyes, A.</td>
+              <td>LT-003</td>
+              <td>May 10</td>
+              <td><span class="badge badge-green">On time</span></td>
+            </tr>
+            <tr>
+              <td>Lim, K.</td>
+              <td>LT-019</td>
+              <td>May 9</td>
+              <td><span class="badge badge-green">On time</span></td>
+            </tr>
+            <tr>
+              <td>Tan, R.</td>
+              <td>LT-024</td>
+              <td>May 8</td>
+              <td><span class="badge badge-amber">Due soon</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-head-title"><i class="ti ti-bell" aria-hidden="true"></i> Alerts</div>
+          <span class="badge badge-red">3 new</span>
+        </div>
+        <div class="alert-item">
+          <div class="alert-icon alert-icon-red"><i class="ti ti-alert-circle" aria-hidden="true"></i></div>
+          <div>
+            <div class="alert-text">LT-012 is <strong>2 days overdue</strong> — Cruz, M. (2024-00456)</div>
+            <div class="alert-time">May 6 · 5:00 PM</div>
+          </div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-icon alert-icon-amber"><i class="ti ti-clock" aria-hidden="true"></i></div>
+          <div>
+            <div class="alert-text">LT-007 due today at 5 PM — Santos, J.</div>
+            <div class="alert-time">Today · 8:00 AM</div>
+          </div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-icon alert-icon-amber"><i class="ti ti-tool" aria-hidden="true"></i></div>
+          <div>
+            <div class="alert-text">LT-031 flagged for battery issue after return</div>
+            <div class="alert-time">May 7 · 2:30 PM</div>
+          </div>
+        </div>
+        <div style="padding: 1rem 1.2rem; display: flex; gap: 8px;">
+          <button class="action-btn"><i class="ti ti-circle-plus" style="font-size:14px" aria-hidden="true"></i> New Borrow</button>
+          <button class="action-btn" style="background: transparent; color: var(--color-text-primary); border: 0.5px solid var(--color-border-secondary);"><i class="ti ti-scan" style="font-size:14px" aria-hidden="true"></i> Scan Return</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
